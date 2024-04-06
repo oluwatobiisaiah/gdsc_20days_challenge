@@ -3,7 +3,7 @@ import { Author } from "./Author";
 import { BookCategory } from "./BookCategory";
 import { BookSubCategory } from "./BookSubCategory";
 
-@Entity()
+@Entity('books')
 export class Book{
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -12,7 +12,7 @@ export class Book{
     title: string;
 
     @ManyToOne(()=>Author,(author)=>author.id) //as there can be author and co-authors
-    author:Author[];
+    authors:Author[];
 
     @Column({type:String})
     yearPublished:string;

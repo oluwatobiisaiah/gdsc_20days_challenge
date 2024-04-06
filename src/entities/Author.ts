@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Book } from "./Book";
 
-@Entity()
+@Entity('authors')
 export class Author{
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -12,7 +12,7 @@ export class Author{
     @Column({type:String})
     lastName:string;
 
-    @OneToMany(()=>Book,(book)=>book.author)
+    @OneToMany(()=>Book,(book)=>book.authors)
     books:Book[]
 
     @Column({type:"timestamp",default:()=> "CURRENT_TIMESTAMP"})

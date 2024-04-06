@@ -2,13 +2,13 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "ty
 import { Book } from "./Book";
 import { BookCategory } from "./BookCategory";
 
-@Entity()
+@Entity('book_subcategory')
 export class BookSubCategory{
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column({type:String})
-    subategoryTitle: string;
+    subCategoryTitle: string;
 
     @Column({type:String})
     description:string;
@@ -17,8 +17,8 @@ export class BookSubCategory{
     books:Book[];
 
     @ManyToOne(()=>BookCategory,(category)=>category.id)
-    category:string;
-    
+    category:BookCategory;
+
     @Column({type:"timestamp",default:()=> "CURRENT_TIMESTAMP"})
     createdAt:Date;
     

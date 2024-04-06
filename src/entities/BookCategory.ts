@@ -1,7 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Book } from "./Book";
+import { BookSubCategory } from "./BookSubCategory";
 
-@Entity()
+@Entity('book_category')
 export class BookCategory{
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -15,7 +16,8 @@ export class BookCategory{
     @OneToMany(()=>Book,(book)=>book.category)
     books:Book[];
 
-    subCategory;
+    @OneToMany(()=>BookSubCategory,(subCategory)=>subCategory.id)
+    subCategory:BookSubCategory[];
 
     @Column({type:"timestamp",default:()=> "CURRENT_TIMESTAMP"})
     createdAt:Date;
