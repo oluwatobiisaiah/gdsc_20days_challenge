@@ -4,6 +4,8 @@ import AuthorDTO from "../../dto/author.dto"
 import validationHandler from "../../middlewares/validationHandler";
 import Joi from "joi";
 import BookDTO from "../../dto/book.dto";
+import BookSubCategoryDTO from "../../dto/bookSubCategory.dto";
+import BookCategoryDTO from "../../dto/bookCategory.dto";
 
 export function validateCreateAuthor(req: Request, res: Response, next: NextFunction){
     const schema =  Joi.object<AuthorDTO>({
@@ -35,8 +37,8 @@ export function validateCreateBook(req: Request, res: Response, next: NextFuncti
 
 
 export function validateCreateBookCategory(req: Request, res: Response, next: NextFunction){
-    const schema = Joi.object({
-        name: Joi.string().required(),
+    const schema = Joi.object<BookCategoryDTO>({
+        categoryTitle: Joi.string().required(),
         description: Joi.string().required(),
     });
 
@@ -44,8 +46,8 @@ export function validateCreateBookCategory(req: Request, res: Response, next: Ne
 }
 
 export function validateCreateBookSubCategory(req: Request, res: Response, next: NextFunction){
-    const schema = Joi.object({
-        name: Joi.string().required(),
+    const schema = Joi.object<BookSubCategoryDTO>({
+        subCategoryTitle: Joi.string().required(),
         description: Joi.string().required(),
         category: Joi.string().required(),
     });
