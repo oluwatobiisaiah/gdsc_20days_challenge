@@ -9,6 +9,6 @@ const bookRoutes = Router();
 const bookController = container.resolve(BookController);
 
 // bookRoutes.use(validateToken);
-bookRoutes.route("/book").post(validateCreateBook, asyncWrapper(bookController.createBook)).get(asyncWrapper(bookController.getAllBooks));
-bookRoutes.route("/book/:id").get(asyncWrapper(bookController.getABook)).patch(validateCreateBook,asyncWrapper(bookController.updateBook)).delete(asyncWrapper(bookController.deleteBook));
+bookRoutes.route("/book").post(validateToken,validateCreateBook, asyncWrapper(bookController.createBook)).get(validateToken,asyncWrapper(bookController.getAllBooks));
+bookRoutes.route("/book/:id").get(validateToken,asyncWrapper(bookController.getABook)).patch(validateToken,validateCreateBook,asyncWrapper(bookController.updateBook)).delete(validateToken,asyncWrapper(bookController.deleteBook));
 export default bookRoutes;
