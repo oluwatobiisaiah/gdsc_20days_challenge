@@ -47,7 +47,7 @@ export default class AuthorController{
         try {
             const id = req.params.id;
             const authorService = container.resolve(AuthorService);
-            const author = await authorService.getOne(id);
+            const author = await authorService.getOne({id});
             res.status(200).json(
                 successResponse({
                   data: author,
